@@ -21,7 +21,7 @@
   },
   "files": [
     "dist",
-    "!dist/*.tgz"
+    "!dist/**/*.tgz"
   ],
   "dependencies": {
     "@google/genai": "^1.4.0",
