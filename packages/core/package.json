@@ -21,7 +21,7 @@
   },
   "files": [
     "dist",
-    "!**/*.tgz"
+    "!dist/google-gemini-cli-core-*.tgz"
   ],
   "dependencies": {
     "@google/genai": "^1.4.0",
