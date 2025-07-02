@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "moduleResolution": "node",
+    "removeComments": false,
+    "sourceMap": false,
+    "target": "esnext",
+    "outDir": "out",
+    "declaration": true,
+    "strict": true,
+    "module": "esnext",
+    "noEmitOnError": true,
+    "esModuleInterop": false,
+  },
+  "include": ["../core/**/*","../cli/**/*"]
+}
