@@ -121,11 +121,30 @@ export class LoadedSettings {
   }
 
   private computeMergedSettings(): Settings {
-    return {
-      ...this.user.settings,
-      ...this.workspace.settings,
-      ...this.system.settings,
-    };
+    const isObject = value => value && typeof value === 'object' && !Array.isArray(value);
+    const deepMerge = (target, source) => {
+      if (Array.isArray(target) && Array.isArray(source)) {
+        return [...target, ...source];
+      } else if (isObject(target) && isObject(source)) {
+        const result = { ...target };
+        for (const key in source) {
+          if (source.hasOwnProperty(key)) {
+            result[key] = key in result
+              ? deepMerge(result[key], source[key])
+              : source[key];
+          }
+        }
+        return result;
+      } else {
+        // Primitive or mismatched types: source overrides
+        return source;
+      }
+    }  
+     
+    return deepMerge(
+      deepMerge(this.system.settings, this.user.settings),
+      this.workspace.settings
+    );
   }
 
   forScope(scope: SettingScope): SettingsFile {
